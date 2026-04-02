@@ -37,12 +37,43 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-sm border-b border-border z-50 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link 
-            to="/" 
-            className="text-xl font-bold text-primary hover:text-purple-600 transition-colors duration-300"
+        <div className="flex justify-between items-center h-20">
+          <Link
+            to="/"
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity duration-300"
           >
-            Pallavi Gonepalli
+            {/* Hexagon P icon */}
+            <div className="relative flex items-center justify-center w-10 h-12 flex-shrink-0">
+              <svg viewBox="0 0 40 46" className="absolute w-full h-full" fill="none">
+                <defs>
+                  <linearGradient id="hexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#a855f7" />
+                    <stop offset="100%" stopColor="#7c3aed" />
+                  </linearGradient>
+                </defs>
+                <polygon
+                  points="20,2 38,12 38,34 20,44 2,34 2,12"
+                  stroke="url(#hexGrad)"
+                  strokeWidth="1.5"
+                />
+              </svg>
+              <span className="relative z-10 text-purple-500 font-bold text-xl leading-none">P</span>
+            </div>
+
+            {/* Name + title text */}
+            <div className="flex flex-col leading-tight">
+              <div className="flex items-baseline gap-1 sm:gap-1.5 flex-wrap">
+                <span className={`text-sm sm:text-base font-bold tracking-wide ${isDark ? 'text-white' : 'text-black'}`}>
+                  PALLAVI
+                </span>
+                <span className="text-sm sm:text-base font-bold tracking-wide text-purple-500">
+                  GONEPALLI
+                </span>
+              </div>
+              <span className={`text-[8px] sm:text-[9px] font-semibold tracking-widest uppercase hidden xs:block ${isDark ? 'text-white/75' : 'text-black/65'}`}>
+                UI &amp; Full Stack Developer
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}

@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design Tokens ─────────────────────────────────────────── */
+:root {
+  --bg: #0B0F19;
+  --surface: #111827;
+  --surface2: #1a2235;
+  --border-glass: rgba(255, 255, 255, 0.07);
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --grad-primary: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+  --grad-accent: linear-gradient(135deg, #00f5a0, #00d9f5);
+  --radius-card: 16px;
+}
+
+.light {
+  --bg: #f1f5f9;
+  --surface: #ffffff;
+  --surface2: #f8fafc;
+  --border-glass: rgba(0, 0, 0, 0.07);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+}
+
+/* ─── Base Reset ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+}
+
+/* ─── Custom Scrollbar ───────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 99px;
+}
+
+/* ─── Utility Classes ────────────────────────────────────────── */
+@layer components {
+  /* Glass card */
+  .glass {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-card);
+  }
+
+  .light .glass {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Gradient text */
+  .grad-text {
+    background: var(--grad-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .grad-text-accent {
+    background: var(--grad-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Gradient border wrapper */
+  .grad-border {
+    position: relative;
+    border-radius: var(--radius-card);
+    isolation: isolate;
+  }
+  .grad-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: calc(var(--radius-card) + 1px);
+    background: var(--grad-primary);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .grad-border:hover::before { opacity: 1; }
+
+  /* Aurora background */
+  .aurora {
+    background:
+      radial-gradient(ellipse 80% 60% at 50% -10%, rgba(99,102,241,0.22) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 80% 40%, rgba(139,92,246,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 50% at 20% 60%, rgba(236,72,153,0.09) 0%, transparent 50%);
+  }
+
+  /* Mesh gradient background */
+  .mesh-bg {
+    background:
+      radial-gradient(at 27% 37%, rgba(99,102,241,0.15) 0%, transparent 50%),
+      radial-gradient(at 97% 21%, rgba(139,92,246,0.1) 0%, transparent 50%),
+      radial-gradient(at 52% 99%, rgba(236,72,153,0.1) 0%, transparent 50%),
+      radial-gradient(at 10% 29%, rgba(0,245,160,0.08) 0%, transparent 50%);
+  }
+
+  /* Section wrapper */
+  .section-wrapper {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20;
+  }
+
+  /* Section heading */
+  .section-heading {
+    @apply text-3xl sm:text-4xl font-bold font-poppins mb-2;
+  }
+
+  /* Tag / badge */
+  .skill-tag {
+    @apply px-3 py-1.5 text-xs font-medium rounded-full border transition-all duration-200 cursor-default;
+    border-color: var(--border-glass);
+    background: rgba(255,255,255,0.04);
+    color: var(--text-secondary);
+  }
+  .skill-tag:hover {
+    border-color: rgba(99,102,241,0.5);
+    background: rgba(99,102,241,0.1);
+    color: var(--text-primary);
+  }
+  .light .skill-tag {
+    background: rgba(0,0,0,0.04);
+  }
+  .light .skill-tag:hover {
+    background: rgba(99,102,241,0.08);
+  }
+}
+
+/* ─── Keyframes ──────────────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33%       { transform: translateY(-18px) rotate(120deg); }
+  66%       { transform: translateY(-9px) rotate(240deg); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}

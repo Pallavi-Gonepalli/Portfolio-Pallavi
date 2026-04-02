@@ -5,76 +5,48 @@ import { Briefcase, Calendar, MapPin, Award } from 'lucide-react';
 const Experience = () => {
   const experiences = [
     {
-      title: "MERN Stack Intern",
-      company: "Codegnan IT Solutions",
-      duration: "7 weeks",
-      period: "2024",
-      location: "Remote",
-      description: "Developed full-stack applications including a comprehensive Book Exchange Platform using MongoDB, Express.js, React.js, and Node.js.",
-      achievements: [
-        "Built a complete Book Exchange Platform with user authentication",
-        "Implemented real-time features using Socket.io",
-        "Designed responsive UI components with React.js",
-        "Integrated MongoDB for efficient data management"
-      ],
-      technologies: ["React.js", "Node.js", "MongoDB", "Express.js", "Socket.io"],
-      color: "from-green-500 to-emerald-500"
-    },
-    {
-      title: "Python Intern",
-      company: "Tech-Mark | HODU Foundation",
-      duration: "11 weeks",
-      period: "2024",
-      location: "Remote",
-      description: "Developed machine learning models for employee attrition prediction using advanced Python libraries and statistical analysis.",
-      achievements: [
-        "Created ML models for employee turnover prediction",
-        "Achieved 85% accuracy in attrition prediction",
-        "Implemented data preprocessing and feature engineering",
-        "Developed interactive dashboards for data visualization"
-      ],
-      technologies: ["Python", "Scikit-learn", "Pandas", "NumPy", "Matplotlib"],
-      color: "from-blue-500 to-cyan-500"
-    },
-    {
-      title: "Python Full Stack Intern",
-      company: "ExcelR",
-      duration: "6 weeks",
-      period: "2023",
+      title: "UI Developer",
+      company: "Innomax IT Solutions",
+      duration: "~6 Months",
+      period: "2024 – Present",
       location: "Hyderabad",
-      description: "Gained hands-on experience with Django framework, SQL databases, and frontend technologies to build complete web applications.",
+      description: "Built responsive UI components for production-grade web applications, integrated React frontends with FastAPI and PHP backends, and rapidly prototyped full-stack features across government and enterprise projects.",
       achievements: [
-        "Developed web applications using Django framework",
-        "Implemented database operations with SQL",
-        "Created responsive frontend interfaces",
-        "Learned best practices for full-stack development"
+        "Developed responsive UI components for Hop Atlas (flight booking platform on PHP) with cross-browser compatibility and improved UX",
+        "Integrated frontend views with PHP backend for flight search and booking workflows",
+        "Built full-stack hackathon features using React, Next.js, FastAPI, MySQL/PostgreSQL",
+        "Designed and consumed RESTful APIs with FastAPI, connecting React/Next.js with Python backend logic",
+        "Collaborated with cross-functional teams to rapidly prototype under tight hackathon deadlines"
       ],
-      technologies: ["Python", "Django", "SQL", "HTML", "CSS", "JavaScript"],
-      color: "from-purple-500 to-pink-500"
+      technologies: ["React.js", "Next.js", "FastAPI", "PHP", "MySQL", "PostgreSQL", "JavaScript"],
+      color: "from-green-500 to-emerald-500"
     }
   ];
 
   return (
-    <div className="min-h-screen pt-20 pb-16">
+    <div className="min-h-screen pt-20 pb-12 sm:pb-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+
+        {/* Header */}
+        <div className="text-center mb-10 sm:mb-16">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
             Professional Experience
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            My journey through various internships and hands-on learning experiences in technology
+          <p className="text-base sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            My professional experience building full-stack applications across government, enterprise, and hackathon projects
           </p>
         </div>
 
+        {/* Timeline */}
         <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-600 to-pink-600"></div>
+          {/* Vertical line — left on mobile, centered on md+ */}
+          <div className="absolute left-5 sm:left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-600 to-pink-600"></div>
 
-          <div className="space-y-12">
+          <div className="space-y-10 sm:space-y-12">
             {experiences.map((exp, index) => (
-              <div 
+              <div
                 key={index}
-                className={`relative flex items-center ${
+                className={`relative flex items-start ${
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                 }`}
                 style={{
@@ -82,59 +54,63 @@ const Experience = () => {
                   animation: 'fadeInUp 0.6s ease-out forwards'
                 }}
               >
-                {/* Timeline Node */}
-                <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full border-4 border-background z-10"></div>
+                {/* Timeline dot */}
+                <div className="absolute left-5 sm:left-6 md:left-1/2 md:-translate-x-1/2 w-3.5 h-3.5 sm:w-4 sm:h-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full border-4 border-background z-10 mt-3"></div>
 
-                {/* Content Card */}
-                <div className={`w-full md:w-5/12 ml-16 md:ml-0 ${index % 2 === 0 ? 'md:mr-8' : 'md:ml-8'}`}>
-                  <div className="bg-card border border-border rounded-2xl p-8 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                {/* Card — offset from dot on mobile, half-width on md+ */}
+                <div className={`w-full pl-12 sm:pl-14 md:pl-0 md:w-5/12 ${index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}>
+                  <div className="bg-card border border-border rounded-2xl p-5 sm:p-8 hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
+
+                    {/* Card header */}
                     <div className="flex items-start justify-between mb-4">
-                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${exp.color} flex items-center justify-center`}>
-                        <Briefcase className="w-6 h-6 text-white" />
+                      <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-r ${exp.color} flex items-center justify-center flex-shrink-0`}>
+                        <Briefcase className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                       </div>
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${exp.color} bg-opacity-10`}>
+                      <span className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${exp.color} bg-opacity-10`}>
                         {exp.duration}
                       </span>
                     </div>
 
-                    <h3 className="text-xl font-bold mb-2">{exp.title}</h3>
-                    <h4 className="text-lg font-semibold text-purple-600 mb-4">{exp.company}</h4>
-                    
-                    <div className="flex items-center text-sm text-muted-foreground mb-4 space-x-4">
+                    <h3 className="text-lg sm:text-xl font-bold mb-1 sm:mb-2">{exp.title}</h3>
+                    <h4 className="text-base sm:text-lg font-semibold text-purple-600 mb-3 sm:mb-4">{exp.company}</h4>
+
+                    <div className="flex flex-wrap items-center text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4 gap-x-4 gap-y-1">
                       <span className="flex items-center">
-                        <Calendar className="w-4 h-4 mr-1" />
+                        <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1 flex-shrink-0" />
                         {exp.period}
                       </span>
                       <span className="flex items-center">
-                        <MapPin className="w-4 h-4 mr-1" />
+                        <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1 flex-shrink-0" />
                         {exp.location}
                       </span>
                     </div>
 
-                    <p className="text-muted-foreground mb-6 leading-relaxed">
+                    <p className="text-muted-foreground mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
                       {exp.description}
                     </p>
 
-                    <div className="mb-6">
-                      <h5 className="font-semibold mb-3 flex items-center">
-                        <Award className="w-4 h-4 mr-2 text-purple-600" />
+                    {/* Achievements */}
+                    <div className="mb-4 sm:mb-6">
+                      <h5 className="font-semibold mb-2 sm:mb-3 flex items-center text-sm sm:text-base">
+                        <Award className="w-4 h-4 mr-2 text-purple-600 flex-shrink-0" />
                         Key Achievements
                       </h5>
-                      <ul className="space-y-2">
+                      <ul className="space-y-1.5 sm:space-y-2">
                         {exp.achievements.map((achievement, achIndex) => (
-                          <li key={achIndex} className="text-sm text-muted-foreground flex items-start">
-                            <span className="w-2 h-2 bg-purple-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <li key={achIndex} className="text-xs sm:text-sm text-muted-foreground flex items-start">
+                            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-600 rounded-full mt-1.5 sm:mt-2 mr-2 sm:mr-3 flex-shrink-0"></span>
                             {achievement}
                           </li>
                         ))}
                       </ul>
                     </div>
 
-                    <div className="flex flex-wrap gap-2">
+                    {/* Tech tags */}
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {exp.technologies.map((tech, techIndex) => (
-                        <span 
+                        <span
                           key={techIndex}
-                          className="px-3 py-1 bg-muted rounded-lg text-sm font-medium hover:bg-accent transition-colors duration-300"
+                          className="px-2 sm:px-3 py-1 bg-muted rounded-lg text-xs sm:text-sm font-medium hover:bg-accent transition-colors duration-300"
                         >
                           {tech}
                         </span>
@@ -147,23 +123,26 @@ const Experience = () => {
           </div>
         </div>
 
-        <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-8 text-white">
-            <h2 className="text-2xl font-bold mb-4">Ready for New Challenges</h2>
-            <p className="text-purple-100 mb-6 max-w-2xl mx-auto">
-              Each internship has contributed to my growth as a developer. I'm excited to apply these experiences 
-              to new opportunities and continue learning in a professional environment.
+        {/* CTA */}
+        <div className="mt-12 sm:mt-16 text-center">
+          <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-6 sm:p-8 text-white">
+            <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Ready for New Challenges</h2>
+            <p className="text-purple-100 mb-4 sm:mb-6 max-w-2xl mx-auto text-sm sm:text-base">
+              Each project has contributed to my growth as a developer. I'm excited to apply these
+              experiences to new opportunities and continue learning in a professional environment.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+              <a
                 href="/contact"
-                className="inline-flex items-center px-6 py-3 bg-white text-purple-600 rounded-full font-semibold hover:bg-purple-50 transition-colors duration-300"
+                className="inline-flex items-center justify-center px-5 sm:px-6 py-2.5 sm:py-3 bg-white text-purple-600 rounded-full font-semibold hover:bg-purple-50 transition-colors duration-300 text-sm sm:text-base"
               >
                 Hire Me
               </a>
-              <a 
-                href="#"
-                className="inline-flex items-center px-6 py-3 border-2 border-white text-white rounded-full font-semibold hover:bg-white hover:text-purple-600 transition-colors duration-300"
+              <a
+                href="/Pallavi.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-5 sm:px-6 py-2.5 sm:py-3 border-2 border-white text-white rounded-full font-semibold hover:bg-white hover:text-purple-600 transition-colors duration-300 text-sm sm:text-base"
               >
                 Download Resume
               </a>
@@ -172,16 +151,10 @@ const Experience = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(30px); }
+          to   { opacity: 1; transform: translateY(0); }
         }
       `}</style>
     </div>
