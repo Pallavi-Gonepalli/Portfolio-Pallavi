@@ -14,7 +14,7 @@ const Certifications = () => {
       skills: ["MongoDB", "Express.js", "React.js", "Node.js", "Full Stack Development"],
       color: "from-green-500 to-emerald-500",
       status: "Completed",
-      fileUrl: "/certificates/codegnan%20certi.pdf"
+      fileUrl: "/certificates/codegnan-certi.pdf"
     },
     {
       title: "Python Full Stack Developer",
