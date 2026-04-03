@@ -1,8 +1,10 @@
 
 import React from 'react';
 import { Award, ExternalLink, Calendar, CheckCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Certifications = () => {
+  const navigate = useNavigate();
   const certifications = [
     {
       title: "MERN Stack Developer",
@@ -144,15 +146,16 @@ const Certifications = () => {
 
               {cert.fileUrl && (
                 <div className="flex justify-end pt-3 border-t border-border mt-auto">
-                  <a
-                    href={cert.fileUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    onClick={() => {
+                      const params = new URLSearchParams({ file: cert.fileUrl!, title: cert.title });
+                      window.open(`/certificate?${params.toString()}`, '_blank');
+                    }}
                     className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-gradient-to-r ${cert.color} hover:opacity-90 hover:scale-105 active:scale-95 transition-all duration-200 shadow-sm`}
                   >
                     <ExternalLink className="w-3 h-3" />
                     View Certificate
-                  </a>
+                  </button>
                 </div>
               )}
             </div>

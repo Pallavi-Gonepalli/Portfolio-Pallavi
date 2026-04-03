@@ -70,7 +70,7 @@ const Navbar = () => {
                   GONEPALLI
                 </span>
               </div>
-              <span className={`text-[8px] sm:text-[9px] font-semibold tracking-widest uppercase hidden xs:block ${isDark ? 'text-white/75' : 'text-black/65'}`}>
+              <span className={`text-[8px] sm:text-[9px] font-semibold tracking-widest uppercase ${isDark ? 'text-white/75' : 'text-black/65'}`}>
                 UI &amp; Full Stack Developer
               </span>
             </div>
