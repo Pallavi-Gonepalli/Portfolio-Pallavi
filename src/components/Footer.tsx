@@ -1,20 +1,9 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Mail, Send } from 'lucide-react';
+import { MapPin, Mail } from 'lucide-react';
 
 const Footer = () => {
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email.trim()) return;
-    setSubscribed(true);
-    setEmail('');
-    setTimeout(() => setSubscribed(false), 4000);
-  };
-
   const navLinks = [
     { label: 'Home', to: '/' },
     { label: 'About', to: '/about' },
@@ -36,7 +25,7 @@ const Footer = () => {
 
       {/* Main grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 lg:gap-8">
 
           {/* Navigation */}
           <div className="space-y-3">
@@ -98,33 +87,6 @@ const Footer = () => {
               <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
               <span className="text-xs font-medium text-green-500">Available for Hire</span>
             </div>
-          </div>
-
-          {/* Newsletter */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-semibold uppercase tracking-widest text-foreground">
-              Stay Updated
-            </h4>
-            <form onSubmit={handleSubscribe} className="space-y-2">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="your@email.com"
-                required
-                className="w-full px-3 py-2 rounded-lg border border-border bg-background text-xs focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200 placeholder:text-muted-foreground/60"
-              />
-              <button
-                type="submit"
-                className="w-full flex items-center justify-center gap-1.5 px-3 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white text-xs font-semibold rounded-lg transition-all duration-300 hover:scale-105"
-              >
-                <Send className="w-3.5 h-3.5" />
-                {subscribed ? 'Subscribed!' : 'Subscribe'}
-              </button>
-            </form>
-            {subscribed && (
-              <p className="text-xs text-green-500 font-medium">You're on the list — thanks!</p>
-            )}
           </div>
 
         </div>

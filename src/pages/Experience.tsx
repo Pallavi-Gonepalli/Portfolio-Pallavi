@@ -2,13 +2,22 @@
 import React from 'react';
 import { Briefcase, Calendar, MapPin, Award } from 'lucide-react';
 
+const getExperienceDuration = () => {
+  const start = new Date(2025, 10, 12); // Nov 12, 2025
+  const now = new Date();
+  let months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
+  if (now.getDate() < start.getDate()) months--;
+  if (months < 1) return '< 1 Month';
+  return `${months} Month${months > 1 ? 's' : ''}`;
+};
+
 const Experience = () => {
   const experiences = [
     {
       title: "UI Developer",
       company: "Innomax IT Solutions",
-      duration: "~6 Months",
-      period: "2024 – Present",
+      duration: getExperienceDuration(),
+      period: "2025 – Currently",
       location: "Hyderabad",
       description: "Built responsive UI components for production-grade web applications, integrated React frontends with FastAPI and PHP backends, and rapidly prototyped full-stack features across government and enterprise projects.",
       achievements: [
