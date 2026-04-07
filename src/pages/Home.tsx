@@ -1,32 +1,84 @@
 
+import { useState, useEffect } from 'react';
 import { ArrowRight, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+const ROLES = [
+  'UI Developer',
+  'Full Stack Developer',
+];
+
+const TYPING_SPEED   = 80;   // ms per character while typing
+const ERASING_SPEED  = 40;   // ms per character while erasing
+const PAUSE_AFTER    = 1800; // ms to hold the completed word
+const PAUSE_BEFORE   = 300;  // ms before starting to type the next word
+
+function useTypewriter(roles: string[]) {
+  const [display, setDisplay]   = useState('');
+  const [roleIdx, setRoleIdx]   = useState(0);
+  const [charIdx, setCharIdx]   = useState(0);
+  const [erasing, setErasing]   = useState(false);
+  const [pausing, setPausing]   = useState(false);
+
+  useEffect(() => {
+    if (pausing) return;
+
+    const current = roles[roleIdx];
+
+    if (!erasing) {
+      if (charIdx < current.length) {
+        const t = setTimeout(() => {
+          setDisplay(current.slice(0, charIdx + 1));
+          setCharIdx(c => c + 1);
+        }, TYPING_SPEED);
+        return () => clearTimeout(t);
+      } else {
+        const t = setTimeout(() => {
+          setPausing(true);
+          setTimeout(() => {
+            setPausing(false);
+            setErasing(true);
+          }, PAUSE_AFTER);
+        }, 0);
+        return () => clearTimeout(t);
+      }
+    } else {
+      if (charIdx > 0) {
+        const t = setTimeout(() => {
+          setDisplay(current.slice(0, charIdx - 1));
+          setCharIdx(c => c - 1);
+        }, ERASING_SPEED);
+        return () => clearTimeout(t);
+      } else {
+        const t = setTimeout(() => {
+          setErasing(false);
+          setRoleIdx(i => (i + 1) % roles.length);
+        }, PAUSE_BEFORE);
+        return () => clearTimeout(t);
+      }
+    }
+  }, [charIdx, erasing, pausing, roleIdx, roles]);
+
+  return display;
+}
+
 const Home = () => {
+  const typedText = useTypewriter(ROLES);
+
   return (
     <div className="min-h-screen relative overflow-hidden">
       <div className="flex items-center justify-center min-h-screen pt-20 sm:pt-24">
         <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="animate-fade-in">
 
-            {/* Avatar */}
-            <div className="mb-6 sm:mb-8">
-              <div className="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 mx-auto rounded-full bg-gradient-to-r from-purple-400 to-pink-400 p-1 animate-pulse">
-                <div className="w-full h-full rounded-full bg-background flex items-center justify-center">
-                  <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-2xl sm:text-3xl md:text-4xl font-bold text-white">
-                    PG
-                  </div>
-                </div>
-              </div>
-            </div>
-
             {/* Heading */}
             <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">
               Hi, I'm Pallavi Gonepalli
             </h1>
 
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-3 sm:mb-4 text-foreground">
-              Python Full Stack Developer
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-3 sm:mb-4 text-foreground min-h-[2.5rem] flex items-center justify-center gap-0.5">
+              <span>{typedText}</span>
+              <span className="inline-block w-0.5 h-[1.1em] bg-purple-500 ml-1 animate-blink" />
             </h2>
 
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed px-2">

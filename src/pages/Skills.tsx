@@ -36,19 +36,6 @@ const Skills = () => {
     }
   ];
 
-  const proficiencyLevels = {
-    "Python": 90,
-    "JavaScript": 85,
-    "React.js": 85,
-    "FastAPI": 82,
-    "Next.js": 80,
-    "HTML5": 92,
-    "CSS3": 88,
-    "Node.js": 78,
-    "PostgreSQL": 80,
-    "MySQL": 76
-  };
-
   return (
     <div className="min-h-screen pt-20 pb-12 sm:pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,50 +83,13 @@ const Skills = () => {
           ))}
         </div>
 
-        {/* Proficiency Levels */}
-        <div className="bg-card border border-border rounded-2xl p-5 sm:p-8">
-          <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-center">Proficiency Levels</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-            {Object.entries(proficiencyLevels).map(([skill, level], index) => (
-              <div key={index} className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <span className="font-medium text-sm sm:text-base">{skill}</span>
-                  <span className="text-xs sm:text-sm text-muted-foreground">{level}%</span>
-                </div>
-
-                <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
-                  <div
-                    className="h-full bg-gradient-to-r from-purple-600 to-pink-600 rounded-full transition-all duration-1000 ease-out"
-                    style={{
-                      width: `${level}%`,
-                      animation: `growWidth 1s ease-out ${index * 0.1}s forwards`
-                    }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Always Learning */}
         <div className="mt-10 sm:mt-16 text-center">
           <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-6 sm:p-8 text-white">
             <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Always Learning &amp; Growing</h2>
-            <p className="text-purple-100 mb-4 sm:mb-6 max-w-2xl mx-auto text-sm sm:text-base">
-              Technology evolves rapidly, and I'm committed to staying current with the latest trends and best practices in full-stack development and AI-powered systems.
+            <p className="text-purple-100 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+              I've always believed that technical excellence is a journey, not a final destination. I'm dedicated to learning in real-time as new methodologies emerge, ensuring I'm always bringing the best possible tools to the table. By keeping my finger on the pulse of the AI and full-stack landscape, I'm able to turn complex challenges into high-impact software solutions.
             </p>
-            <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
-              <span className="px-3 sm:px-4 py-2 bg-white bg-opacity-20 rounded-full text-xs sm:text-sm font-medium">
-                Currently Learning: TypeScript
-              </span>
-              <span className="px-3 sm:px-4 py-2 bg-white bg-opacity-20 rounded-full text-xs sm:text-sm font-medium">
-                Exploring: Docker &amp; Cloud Deployment
-              </span>
-              <span className="px-3 sm:px-4 py-2 bg-white bg-opacity-20 rounded-full text-xs sm:text-sm font-medium">
-                Interested in: Generative AI &amp; LLMs
-              </span>
-            </div>
           </div>
         </div>
       </div>
@@ -148,10 +98,6 @@ const Skills = () => {
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(10px); }
           to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes growWidth {
-          from { width: 0%; }
-          to   { width: var(--target-width); }
         }
       `}</style>
     </div>

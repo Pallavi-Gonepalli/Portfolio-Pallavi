@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, MessageCircle } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
 
+const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT || 'https://formspree.io/f/xlgoznjj';
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -17,24 +19,47 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!FORMSPREE_ENDPOINT) {
+      toast({
+        title: "Not configured",
+        description: "Please set VITE_FORMSPREE_ENDPOINT in your .env file.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
-    const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    );
-    const mailtoLink = `mailto:pallavigonepalli55@gmail.com?subject=${subject}&body=${body}`;
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
 
-    window.open(mailtoLink, '_blank');
+      if (!res.ok) throw new Error('Send failed');
 
-    toast({
-      title: "Opening your email client...",
-      description: "A new email draft has been prepared for you. Please click Send.",
-    });
-    setFormData({ name: '', email: '', message: '' });
-    setIsSubmitting(false);
+      toast({
+        title: "Message sent!",
+        description: "Thanks for reaching out. I'll get back to you within 24 hours.",
+      });
+      setFormData({ name: '', email: '', message: '' });
+    } catch {
+      toast({
+        title: "Failed to send message",
+        description: "Something went wrong. Please email me directly at pallavigonepalli55@gmail.com",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
